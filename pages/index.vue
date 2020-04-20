@@ -173,7 +173,6 @@ export default {
 
       calculator.style.top = `${event.clientY - this.dragStartOffsetY}px`
       calculator.style.left = `${event.clientX - this.dragStartOffsetX}px`
-      // ensure full controll
       event.preventDefault()
     },
     onDrop(event) {
