@@ -67,9 +67,9 @@
       draggable="true"
     >
       <div>
-        <h3>Calculadora</h3>
+        <h3 @dblclick="setCalcVisibility()">Calculadora</h3>
       </div>
-      <div class="calc-inputs">
+      <div id="calcInputs" class="calc-inputs">
         <label for="catAdj">Cateto Adjacente </label>
         <input
           id="catAdj"
@@ -101,11 +101,11 @@
         <p v-if="isNumToGreat" class="error">
           Tente manter os numeros menores que 3 digitos
         </p>
-      </div>
-      <div class="btn-actions">
-        <button class="btn --calc" @click="resolveCalculation()">
-          Calcular
-        </button>
+        <div class="btn-actions">
+          <button class="btn --calc" @click="resolveCalculation()">
+            Calcular
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -122,7 +122,7 @@ export default {
         catAdj: 5,
         hip: 0
       },
-
+      isCalculatorVisible: true,
       scale: 1,
       dragStartOffsetX: 0,
       dragStartOffsetY: 0
@@ -408,6 +408,16 @@ export default {
       adjRect.style.visibility = event.target.checked ? 'hidden' : 'visible'
       opRect.style.visibility = event.target.checked ? 'hidden' : 'visible'
       hipRect.style.visibility = event.target.checked ? 'hidden' : 'visible'
+    },
+    setCalcVisibility() {
+      this.isCalculatorVisible = !this.isCalculatorVisible
+      const calculator = document.getElementById('calcInputs')
+
+      if (this.isCalculatorVisible) {
+        calculator.classList.add('--hide-calc')
+      } else {
+        calculator.classList.remove('--hide-calc')
+      }
     }
   }
 }
@@ -453,6 +463,7 @@ h3 {
   display: flex;
   flex-direction: column;
   padding: 12px 24px 0 24px;
+  overflow: hidden;
 }
 .calc-inputs > * {
   text-align: start;
@@ -461,11 +472,12 @@ h3 {
 .calc-inputs input {
   border-radius: 4px;
   border-style: none;
+  margin-top: 4px;
   padding: 8px;
-  box-shadow: 0 0 4px 0 rgb(160, 160, 160) inset;
+  box-shadow: 0 0 1px 0 rgb(60, 60, 60) inset;
 }
 .btn-actions {
-  padding: 12px 24px;
+  padding: 12px 0;
 }
 .btn {
   width: 100%;
@@ -531,6 +543,8 @@ h3 {
   padding: 4px 24px;
   font-size: 0.8rem;
 }
-@media (max-width: 1008px) {
+.--hide-calc {
+  height: 0px;
+  padding: 0;
 }
 </style>
