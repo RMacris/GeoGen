@@ -183,7 +183,10 @@ export default {
       // seta valor inicial par viewBox = largura e altura do parent
       const container = this.getContainerSize()
       const svg = document.getElementById('triangleWraper')
-      svg.setAttribute('viewBox', `0 0 ${container.width} ${container.height}`)
+      svg.setAttribute(
+        'viewBox',
+        `0 0 ${container.width / 6} ${container.height / 6}`
+      )
     },
     getContainerSize() {
       return document.getElementById('container').getBoundingClientRect()
