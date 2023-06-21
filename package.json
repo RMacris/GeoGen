@@ -14,7 +14,7 @@
     "heroku-postbuild": "nuxt build --prod"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "nuxt": "^3.4.3",
     "@nuxtjs/axios": "^5.3.6"
   },
   "devDependencies": {
